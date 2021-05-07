@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>first django page</title>
-</head>
-<body>
-<h1>hello from other side</h1>
-<p>
-    {{ text }}
-</p>
-</body>
-</html>
+{% extends "homebase.html" %}
+{% block title %}Index Sayfasi{% endblock %}
+{% block keywords %} MainPage Keywords {% endblock %}
+{% block description %} MainPage description {% endblock %}
+
+{% block slider %}
+    {% include "slider.html" %}
+{% endblock %}
+
+{% block content %}
+    {% include "content.html" %}
+{% endblock %}
