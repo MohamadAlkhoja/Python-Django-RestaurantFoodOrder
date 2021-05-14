@@ -1,12 +1,12 @@
 {% extends "homebase.html" %}
-{% block title %}Index Sayfasi{% endblock %}
-{% block keywords %} MainPage Keywords {% endblock %}
-{% block description %} MainPage description {% endblock %}
+{% block title %}{{ setting.title }}{% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
 
-{% block slider %}
-    {% include "slider.html" %}
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
 {% endblock %}
 
-{% block content %}
-    {% include "content.html" %}
-{% endblock %}
+{% block slider %} {% include "slider.html" %} {% endblock %}
+
+{% block content %} {% include "content.html" %} {% endblock %}
