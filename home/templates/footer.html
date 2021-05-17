@@ -68,3 +68,17 @@
 	<script src="{% static 'js/form-validator.min.js' %}"></script>
     <script src="{% static 'js/contact-form-script.js' %}"></script>
     <script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'js/jquery.mapify.js' %}"></script>
+    <script>
+		$('.map-full').mapify({
+			points: [
+				{
+					lat: 40.7143528,
+					lng: -74.0059731,
+					marker: true,
+					title: 'Marker title',
+					infoWindow: 'Yamifood Restaurant'
+				}
+			]
+		});
+	</script>
