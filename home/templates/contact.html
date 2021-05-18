@@ -26,55 +26,33 @@
 	<div class="contact-box">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-12">
+
+				<div class="col-lg-4">
+
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div style="border-left: 6px solid mediumseagreen; background-color: lightgray;font-weight: bold">
+                                    <div class="alert alert-{{message.tag}}" role="alert">
+                                        {{ message }}
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+                        {% endif %}
+
+                        <form id="contactFormu" action="" method="post">
+						    {% csrf_token %}
+                            {{ form.as_p }}
+                            <div class="submit-button text-center">
+                                <input class="btn btn-common" type="submit" value="Send Message">
+                            </div>
+					    </form>
+				</div>
+                <div class="col-lg-8">
 					<div class="heading-title text-center">
 						<h2>Contact Information</h2>
 						<p>{{ setting.contact|safe }}</p>
 					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12">
-					<form id="contactForm">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required data-error="Please enter your name">
-									<div class="help-block with-errors"></div>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group">
-									<input type="text" placeholder="Your Email" id="email" class="form-control" name="name" required data-error="Please enter your email">
-									<div class="help-block with-errors"></div>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group">
-									<select class="custom-select d-block form-control" id="guest" required data-error="Please Select Person">
-									  <option disabled selected>Please Select Person*</option>
-									  <option value="1">1</option>
-									  <option value="2">2</option>
-									  <option value="3">3</option>
-									  <option value="4">4</option>
-									  <option value="5">5</option>
-									</select>
-									<div class="help-block with-errors"></div>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group">
-									<textarea class="form-control" id="message" placeholder="Your Message" rows="4" data-error="Write your message" required></textarea>
-									<div class="help-block with-errors"></div>
-								</div>
-								<div class="submit-button text-center">
-									<button class="btn btn-common" id="submit" type="submit">Send Message</button>
-									<div id="msgSubmit" class="h3 text-center hidden"></div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</form>
 				</div>
 			</div>
 		</div>
