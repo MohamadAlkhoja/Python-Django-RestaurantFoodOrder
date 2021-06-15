@@ -11,7 +11,12 @@ def index(request):
     setting = Setting.objects.get(pk=1)
     sliderdata = Product.objects.all()[:4]
     category = Category.objects.all()
-    context = {'setting': setting, 'category': category, 'page': 'home', 'sliderdata': sliderdata}
+    mostordered = Product.objects.all()[:3]
+    recentlyordered = Product.objects.all().order_by('-id')[:3]
+    mainmeal = Product.objects.all().order_by('?')[:3]
+
+    context = {'setting': setting, 'category': category, 'page': 'home', 'sliderdata': sliderdata,
+               'mostordered': mostordered, 'recentlyordered': recentlyordered, 'mainmeal': mainmeal,}
     return render(request, 'index.html', context)
 
 
