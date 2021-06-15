@@ -1,0 +1,115 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block title %}  {{ categorydata.title }} Menu {% endblock %}
+{% block keywords %} {{ categorydata.keywords }} {% endblock %}
+{% block description %} {{ categorydata.description }} {% endblock %}
+
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+
+{% block header %} {% include header.html %} {% endblock %}
+
+{% block content %}
+
+    <!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Special Menu</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
+
+	<!-- Start Menu -->
+	<div class="menu-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>{{ categorydata.title }}</h2>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3">
+                <div class="special-menu" style="font-weight: bold; text-decoration:underline; font-size: 20px">
+                    <div class="button-group filter-button-group">
+                        <nav id="sidebar">
+                            <div class="p-4 pt-5">
+                                <h2>Categories</h2>
+                                {% load mptt_tags %}
+                                <ul class="list-unstyled components mb-5">
+                                    {% recursetree category %}
+                                        <li>
+                                            <div class="
+        {% if node.is_root_node %}
+        root
+        {% elif node.is_child_node and not node.is_leaf_node or node.is_second_node %}
+        child
+        {% elif node.is_leaf_node and not node.is_root_node %}
+        leaf
+        {% endif %}">
+                                                <a href="/category/{{ node.id }}/{{ node.slug }}"
+                                                > {{ node.title }}</a>
+                                            </div>
+                                            {% if not node.is_leaf_node %}
+                                                <ul style="font-weight: normal; font-size: 16px">
+                                                    <li><a href="/category/{{ node.id }}/{{ node.slug }}"> {{ children }}
+                                                    </a>
+                                                    </li>
+                                                </ul>
+                                            {% endif %}
+                                        </li>
+                                    {% endrecursetree %}
+                                </ul>
+                                <div class="mb-5">
+                                    <h2>Tag Cloud</h2>
+                                    <div class="tagcloud" style="font-weight: normal; font-size: 16px">
+                                        <a href="#" class="tag-cloud-link">dish</a>,
+                                        <a href="#" class="tag-cloud-link">menu</a>,
+                                        <a href="#" class="tag-cloud-link">food</a>,
+                                        <a href="#" class="tag-cloud-link">sweet</a>,
+                                        <a href="#" class="tag-cloud-link">tasty</a>,
+                                        <a href="#" class="tag-cloud-link">delicious</a>,
+                                        <a href="#" class="tag-cloud-link">desserts</a>,
+                                        <a href="#" class="tag-cloud-link">drinks</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-9">
+			<div class="row">
+                {% for rs in products %}
+				<div class="col-lg-6 col-md-6 special-grid drinks">
+					<div class="gallery-single fix">
+						<img src="{{ rs.image.url }}" class="img-fluid" alt="Image">
+						<div class="why-text">
+                            <h4><a href="/product/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></h4>
+							<a href="/product/{{ rs.id }}/{{ rs.slug }}"><p>Sed id magna vitae eros sagittis euismod.</p></a>
+							<a href="/product/{{ rs.id }}/{{ rs.slug }}"><h5> ${{ rs.price }}</h5></a>
+						</div>
+					</div>
+				</div>
+                {% endfor %}
+
+
+			</div>
+            </div>
+		</div>
+	</div>
+    </div>
+	<!-- End Menu -->
+
+
+{% endblock %}
