@@ -71,12 +71,12 @@
 
         .rating > input:checked ~ label, /* show gold star when clicked */
         .rating:not(:checked) > label:hover, /* hover current star */
-        .rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+        .rating:not(:checked) > label:hover ~ label { color: orange;  } /* hover previous stars in list */
 
         .rating > input:checked + label:hover, /* hover current star when changing rating */
         .rating > input:checked ~ label:hover,
         .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-        .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+        .rating > input:checked ~ label:hover ~ label { color: orange;  }
     </style>
 
     <!-- Start header -->
@@ -120,14 +120,11 @@
                     <div class="details col-md-6">
                         <h3 class="product-title">{{ product.title }}</h3>
                         <div class="rating">
-                            <div class="stars">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                            <span class="review-no">41 reviews</span>
+                                <span style="color: orange" class="fa fa-star checked"></span>
+                                <span style="color: orange" class="fa fa-star checked"></span>
+                                <span style="color: orange" class="fa fa-star checked"></span>
+                                <span style="color: orange" class="fa fa-star-o empty"></span>
+                                <span style="color: orange" class="fa fa-star-o empty"></span>
                         </div>
                         <p class="product-description">{{ product.description }}</p>
                         <h4 class="price">current price: <span>${{ product.price }}</span></h4>
@@ -158,12 +155,12 @@
                                                 <div class="col-lg-10 col-md-10 col-sm-8">
                                                     <h5>{{ rs.user.first_name }}</h5>
                                                     <p><span class="c_date">{{ rs.create_at }}</span></p>
-                                                    <div class="ratin" >
-                                                        <i class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif %}" ></i>
-                                                        <i class="fa fa-star{% if rs.rate < 2 %}-o empty{% endif %}"></i>
-                                                        <i class="fa fa-star{% if rs.rate < 3 %}-o empty{% endif %}"></i>
-                                                        <i class="fa fa-star{% if rs.rate < 4 %}-o empty{% endif %}"></i>
-                                                        <i class="fa fa-star{% if rs.rate < 5 %}-o empty{% endif %}"></i> </div>
+                                                    <div class="stars" >
+                                                        <i style="color: orange" class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif %}" ></i>
+                                                        <i style="color: orange" class="fa fa-star{% if rs.rate < 2 %}-o empty{% endif %}"></i>
+                                                        <i style="color: orange" class="fa fa-star{% if rs.rate < 3 %}-o empty{% endif %}"></i>
+                                                        <i style="color: orange" class="fa fa-star{% if rs.rate < 4 %}-o empty{% endif %}"></i>
+                                                        <i style="color: orange" class="fa fa-star{% if rs.rate < 5 %}-o empty{% endif %}"></i> </div>
                                                     <b>&ensp;{{ rs.subject }}</b>
                                                     <p class="msg">{{ rs.comment }} </p>
                                                 </div>
