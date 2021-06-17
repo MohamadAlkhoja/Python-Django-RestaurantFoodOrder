@@ -5,80 +5,242 @@
 {% block description %} {{ product.description }} {% endblock %}
 
 {% block head %}
-<link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/new.css' %}">
+    <link rel="stylesheet" href="{% static 'css/new.css' %}">
 {% endblock %}
 
 
 {% block content %}
+    <style>
+            @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+        fieldset, label { margin: 0; padding: 0; }
+
+        /****** Style Star Rating Widget *****/
+
+        .rating {
+          border: none;
+          float: left;
+        }
+
+        .rating > input { display: none; }
+        .rating > label:before {
+          margin: 5px;
+          font-size: 1.25em;
+          font-family: FontAwesome;
+          display: inline-block;
+          content: "\f005";
+        }
+
+        .rating > .half:before {
+          content: "\f089";
+          position: absolute;
+        }
+
+        .rating > label {
+          color: #ddd;
+         float: right;
+        }
+
+        .product-detail-side span.ratin {
+            margin-right: 5px;
+        }
+
+        .ratin i {
+            color: #eabe12;
+            font-size: 18px;
+            margin: 0 -2px;
+        }
+        .product_review .ratin i {
+	        font-size: 13px;
+        }
+
+        .product_review .ratin {
+            margin-top: 5px;
+            float: left;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        /***** CSS Magic to Highlight Stars on Hover *****/
+
+        .rating > input:checked ~ label, /* show gold star when clicked */
+        .rating:not(:checked) > label:hover, /* hover current star */
+        .rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+        .rating > input:checked + label:hover, /* hover current star when changing rating */
+        .rating > input:checked ~ label:hover,
+        .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+        .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+    </style>
 
     <!-- Start header -->
-	<div class="all-page-title page-breadcrumb">
-		<div class="container text-center">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1>Enjoy with Delicious Food</h1>
-                    <p ><a style="color: white" href="/category/{{ product.category_id }}/{{ product.category.slug }}">{{ product.category }}</a></p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End header -->
+    <div class="all-page-title page-breadcrumb">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Enjoy with Delicious Food</h1>
+                    <p><a style="color: white"
+                          href="/category/{{ product.category_id }}/{{ product.category.slug }}">{{ product.category }}</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End header -->
 
-	<!-- Start references -->
-	<div class="container">
-		<div class="card">
-			<div class="container-fliud">
-				<div class="wrapper row">
-					<div class="preview col-md-6">
+    <!-- Start references -->
+    <div class="container">
+        <div class="card">
+            <div class="container-fliud">
+                <div class="wrapper row">
+                    <div class="preview col-md-6">
 
-						<div class="preview-pic tab-content">
-						  <div class="tab-pane active" id="pic-1"><img src="{{ product.image.url }}" /></div>
+                        <div class="preview-pic tab-content">
+                            <div class="tab-pane active" id="pic-1"><img src="{{ product.image.url }}"/></div>
                             {% for rs in images %}
-						  <div class="tab-pane" id="pic-2"><img src="{{ rs.image.url }}" /></div>
+                                <div class="tab-pane" id="pic-2"><img src="{{ rs.image.url }}"/></div>
                             {% endfor %}
 
-						</div>
-						<ul class="preview-thumbnail nav nav-tabs">
-						  <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="{{ product.image.url }}" /></a></li>
+                        </div>
+                        <ul class="preview-thumbnail nav nav-tabs">
+                            <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
+                                    src="{{ product.image.url }}"/></a></li>
                             {% for rs in images %}
-						  <li><a data-target="#pic-2" ><img src="{{ rs.image.url }}" /></a></li>
+                                <li><a data-target="#pic-2"><img src="{{ rs.image.url }}"/></a></li>
                             {% endfor %}
-						</ul>
+                        </ul>
 
-					</div>
-					<div class="details col-md-6">
-						<h3 class="product-title">{{ product.title }}</h3>
-						<div class="rating">
-							<div class="stars">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-							</div>
-							<span class="review-no">41 reviews</span>
-						</div>
-						<p class="product-description">{{ product.description }}</p>
-						<h4 class="price">current price: <span>${{ product.price }}</span></h4>
+                    </div>
+                    <div class="details col-md-6">
+                        <h3 class="product-title">{{ product.title }}</h3>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+                            <span class="review-no">41 reviews</span>
+                        </div>
+                        <p class="product-description">{{ product.description }}</p>
+                        <h4 class="price">current price: <span>${{ product.price }}</span></h4>
                         <br>
-						<div class="action">
+                        <div class="action">
                             <span class="text-uppercase">number:</span>
                             <input class="input" type="number" min="0" style="width: 80px; height: 50px" value="1">
-							<button class="add-to-cart btn btn-default" type="button">add to order</button>
-							<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                            <button class="add-to-cart btn btn-default" type="button">add to order</button>
+                            <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="full">
+                            <div class="tab_bar_section">
+                                    <hr>
+                                    <h2 class="nav-item">Reviews</h2>
+
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div id="reviews" >
+                                        <div class="product_review">
+                                        {% for rs in comments %}
+                                            <div class="commant-text row">
+                                                <div class="col-lg-10 col-md-10 col-sm-8">
+                                                    <h5>{{ rs.user.first_name }}</h5>
+                                                    <p><span class="c_date">{{ rs.create_at }}</span></p>
+                                                    <div class="ratin" >
+                                                        <i class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif %}" ></i>
+                                                        <i class="fa fa-star{% if rs.rate < 2 %}-o empty{% endif %}"></i>
+                                                        <i class="fa fa-star{% if rs.rate < 3 %}-o empty{% endif %}"></i>
+                                                        <i class="fa fa-star{% if rs.rate < 4 %}-o empty{% endif %}"></i>
+                                                        <i class="fa fa-star{% if rs.rate < 5 %}-o empty{% endif %}"></i> </div>
+                                                    <b>&ensp;{{ rs.subject }}</b>
+                                                    <p class="msg">{{ rs.comment }} </p>
+                                                </div>
+                                            </div>
+                                            <br>
+                                        {% endfor %}
+                                            <br>
+
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="full review_bt_section">
+                                                        <div class="float-right"><a class="btn btn-default "
+                                                                                    style="background-color: orange"
+                                                                                    data-toggle="collapse"
+                                                                                    href="#collapseExample"
+                                                                                    role="button" aria-expanded="false"
+                                                                                    aria-controls="collapseExample">Leave a Review</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="full">
+                                                        <div id="collapseExample" style="width: 800px" class="full collapse commant_box">
+                                                            {% if messages %}
+                                                                {% for message in messages %}
+                                                                    <div style="color: orange; background-color: darkgray; width: 500px" class="alert alert-warning{{ message.tags }}" role="alert">
+                                                                        {{ message }}
+                                                                    </div>
+                                                                {% endfor %}
+
+                                                            {% endif %}
+
+                                                            <form accept-charset="UTF-8" action="/product/addcomment/{{ product.id }}" method="post">
+                                                            {% csrf_token %}
+                                                                <input class="input form-control " style="width: 500px" type="text" name="subject" id="id_subject" placeholder="Subject">
+                                                                <br>
+                                                                <div class="input-rating">
+
+                                                                    <fieldset class="rating">
+                                                                        <strong class="text-uppercase"> Your Rate: </strong>
+                                                                        <input type="radio" id="star5" name="rate" value="5" ><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                                                        <input type="radio" id="star4" name="rate" value="4" ><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                                                        <input type="radio" id="star3" name="rate" value="3" ><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                                                        <input type="radio" id="star2" name="rate" value="2" ><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                                                        <input type="radio" id="star1" name="rate" value="1" ><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                                                    </fieldset>
+                                                                </div>
+                                                                <br>
+                                                                <textarea class="form-control animated" cols="50" rows="4"
+                                                                          id="id_comment" name="comment"
+                                                                          placeholder="Enter your review here..."
+                                                                          required=""></textarea>
+
+                                                                <div class="full_bt button-group filter-button-group">
+                                                                    {% if user.id is not None %}
+                                                                    <button style="background-color: orange" class="btn btn-default" >Save
+                                                                    </button>
+                                                                    {% else %}
+                                                                    You need to <a style="color: orange" href="/login" >Login</a> for adding review
+                                                                    {% endif %}
+                                                                </div>
+
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <br>
     <br>
-	<!-- End references -->
+    <!-- End references -->
 
 {% endblock %}
