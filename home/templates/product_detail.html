@@ -131,9 +131,9 @@
                         <br>
                         <div class="action">
                             <span class="text-uppercase">number:</span>
-                            <input class="input" type="number" min="0" style="width: 80px; height: 50px" value="1">
-                            <button class="add-to-cart btn btn-default" type="button">add to order</button>
-                            <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span>
+                            <input class="input" type="number" min="0" style="width: 80px; height: 45px" value="1">&emsp;
+                            <button class="btn btn-submit" type="button">add to order</button>
+                            <button class="btn btn-submit" type="button"><span class="fa fa-heart"></span>
                             </button>
                         </div>
                     </div>
@@ -172,8 +172,7 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="full review_bt_section">
-                                                        <div class="float-right"><a class="btn btn-default "
-                                                                                    style="background-color: orange"
+                                                        <div class="float-right"><a class="btn btn-submit "
                                                                                     data-toggle="collapse"
                                                                                     href="#collapseExample"
                                                                                     role="button" aria-expanded="false"
@@ -184,14 +183,14 @@
                                                         <div id="collapseExample" style="width: 800px" class="full collapse commant_box">
                                                             {% if messages %}
                                                                 {% for message in messages %}
-                                                                    <div style="color: orange; background-color: darkgray; width: 500px" class="alert alert-warning{{ message.tags }}" role="alert">
+                                                                    <div style="border-left: 6px solid mediumseagreen; background-color: lightgray; width: 500px; font-weight: bold" class="alert alert-warning{{ message.tags }}" role="alert">
                                                                         {{ message }}
                                                                     </div>
                                                                 {% endfor %}
 
                                                             {% endif %}
 
-                                                            <form accept-charset="UTF-8" action="/product/addcomment/{{ product.id }}" method="post">
+                                                            <form class="comment-form-respond" accept-charset="UTF-8" action="/product/addcomment/{{ product.id }}" method="post">
                                                             {% csrf_token %}
                                                                 <input class="input form-control " style="width: 500px" type="text" name="subject" id="id_subject" placeholder="Subject">
                                                                 <br>
@@ -214,7 +213,7 @@
 
                                                                 <div class="full_bt button-group filter-button-group">
                                                                     {% if user.id is not None %}
-                                                                    <button style="background-color: orange" class="btn btn-default" >Save
+                                                                    <button class="btn btn-submit" >Save
                                                                     </button>
                                                                     {% else %}
                                                                     You need to <a style="color: orange" href="/login" >Login</a> for adding review
