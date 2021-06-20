@@ -1,0 +1,75 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block title %} {{ profile.user_name }} Profile {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+
+
+{% block content %}
+
+    <br><br><br>
+	<!-- Start references -->
+	<div class="about-section-box">
+		<div class="container">
+			<div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-8 col-12 blog-sidebar">
+					{% include "user_panel.html" %}
+				</div>
+                <div class="col-xl-9 col-lg-9 col-12">
+                    <h2 style="font-weight: bold">&nbsp;&nbsp;&nbsp; User Information</h2>
+                    <hr>
+					<div class="blog-inner-details-page">
+						<div class="blog-inner-box">
+
+							<div class="inner-blog-detail details-page">
+
+								<table style="width: 90%">
+                                    <thead>
+                                            <tr>
+                                            <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left"></th>
+                                            <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb"><img style="width: 100px;height: 130px;" src="{{ profile.image.url }}" alt=""> </td>
+                                            </tr>
+                                            <tr>
+                                            <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Name Surname</th>
+                                            <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">{{ profile.user.username }}</td>
+                                            </tr>
+                                            <tr>
+                                            <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Email</th>
+                                            <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">{{ profile.user.email }}</td>
+                                            </tr>
+                                            <tr>
+                                            <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Phone</th>
+                                            <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">{{ profile.phone }}</td>
+                                            </tr>
+                                            <tr>
+                                            <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Address</th>
+                                            <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">{{ profile.address }}</td>
+                                            </tr>
+                                            <tr>
+                                            <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">City</th>
+                                            <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">{{ profile.city }}</td>
+                                            </tr>
+                                            <tr>
+                                            <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Country</th>
+                                            <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">{{ profile.country }}</td>
+                                            </tr>
+                                    </thead>
+
+                                </table>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- End references -->
+
+{% endblock %}
