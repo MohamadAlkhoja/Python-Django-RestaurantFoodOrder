@@ -1,0 +1,35 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block title %} basket {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+
+
+{% block content %}
+
+    <br><br><br>
+	<!-- Start Reservation -->
+	<div class="reservation-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+                        <h2>Dear {{ user.first_name }} {{ user.last_name }}</h2>
+						<h2>YOUR ORDER HAS BEEN SENT TO THE CHEFS</h2>
+                        <h3>Soon Will Be on Your Table</h3>
+                        <h3>the wifi Password "yamifood2154"</h3>
+
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- End Reservation -->
+
+{% endblock %}
