@@ -6,6 +6,7 @@ from django.shortcuts import render
 # Create your views here.
 from home.forms import SignUpForm
 from home.models import Setting, ContactFormu, ContactFormMessage
+from order.models import ShopCart
 from product.models import Product, Category, Images, Comment
 
 
@@ -16,6 +17,8 @@ def index(request):
     mostordered = Product.objects.all()[:3]
     recentlyordered = Product.objects.all().order_by('-id')[:3]
     mainmeal = Product.objects.all().order_by('?')[:3]
+    current_user = request.user
+    request.session['cart_items'] = ShopCart.objects.filter(user_id=current_user.id).count()
 
     context = {'setting': setting, 'category': category, 'page': 'home', 'sliderdata': sliderdata,
                'mostordered': mostordered, 'recentlyordered': recentlyordered, 'mainmeal': mainmeal,}

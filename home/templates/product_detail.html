@@ -115,7 +115,17 @@
                                 <li><a data-target="#pic-2"><img src="{{ rs.image.url }}"/></a></li>
                             {% endfor %}
                         </ul>
+                    <br>
+                    <br>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div style="border-left: 6px solid mediumseagreen; background-color: lightgray; width: 500px; font-weight: bold"
+                                 class="alert alert-warning{{ message.tags }}" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
 
+                    {% endif %}
                     </div>
                     <div class="details col-md-6">
                         <h3 class="product-title">{{ product.title }}</h3>
@@ -130,11 +140,14 @@
                         <h4 class="price">current price: <span>${{ product.price }}</span></h4>
                         <br>
                         <div class="action">
+                            <form action="/order/addtocart/{{ product.id }}" method="post">
+                                {% csrf_token %}
                             <span class="text-uppercase">number:</span>
-                            <input class="input" type="number" min="0" style="width: 80px; height: 45px" value="1">&emsp;
-                            <button class="btn btn-submit" type="button">add to order</button>
+                            <input class="input" name="quantity" type="number" min="0" style="width: 80px; height: 45px" value="1">&emsp;
+                            <button class="btn btn-submit" type="submit">add to order</button>
                             <button class="btn btn-submit" type="button"><span class="fa fa-heart"></span>
                             </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -181,14 +194,7 @@
                                                     </div>
                                                     <div class="full">
                                                         <div id="collapseExample" style="width: 800px" class="full collapse commant_box">
-                                                            {% if messages %}
-                                                                {% for message in messages %}
-                                                                    <div style="border-left: 6px solid mediumseagreen; background-color: lightgray; width: 500px; font-weight: bold" class="alert alert-warning{{ message.tags }}" role="alert">
-                                                                        {{ message }}
-                                                                    </div>
-                                                                {% endfor %}
 
-                                                            {% endif %}
 
                                                             <form class="comment-form-respond" accept-charset="UTF-8" action="/product/addcomment/{{ product.id }}" method="post">
                                                             {% csrf_token %}

@@ -2,8 +2,7 @@
 <!-- Start header -->
 	<header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container">
-				<a class="navbar-brand" href="/">
+				&emsp;&emsp;&emsp;<a class="navbar-brand" href="/">
 					<img src="{%static 'images/logo.png' %}" alt="" />
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,9 +36,12 @@
 								<a class="dropdown-item" href="/logout/">Logout</a>
 							</div>
 						</li>
+                        <li class="nav-item"><a class="nav-link" href="/shopcart/">
+                            Confirm Order <i class="fa fa-cutlery"></i><span style="border-radius: 50%; background-color: #cfa671"> {{ request.session.cart_items }}&nbsp; </span></a>
+                        </li>
 					</ul>
+                &emsp;&emsp;&emsp;
 				</div>
-			</div>
 		</nav>
 	</header>
 	<!-- End header -->
