@@ -1,0 +1,92 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block title %} Orders Detail {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+
+{% block content %}
+
+    <br><br><br>
+	<!-- Start references -->
+	<div class="about-section-box">
+		<div class="container">
+			<div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-8 col-12 blog-sidebar">
+					{% include "user_panel.html" %}
+				</div>
+                <div class="col-xl-9 col-lg-9 col-12">
+                    <h2 style="font-weight: bold">&nbsp;&nbsp;&nbsp; Order Status</h2>
+                    <hr>
+					<div class="blog-inner-details-page">
+						<div class="blog-inner-box">
+							<div class="inner-blog-detail details-page">
+                                <table style="width: 90%">
+                                    <tr>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Table Number</th>
+                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">{{ order.tableno }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Status</th>
+                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">{{ order.status }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Ordered At</th>
+                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">{{ order.create_at }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Updated At</th>
+                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">{{ order.update_at }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Chef Note</th>
+                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">{{ order.adminnote }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <h2 style="font-weight: bold">&nbsp;&nbsp;&nbsp; Order Detail</h2>
+                    <hr>
+					<div class="blog-inner-details-page">
+						<div class="blog-inner-box">
+							<div class="inner-blog-detail details-page">
+								<table style="width: 90%">
+                                    <tr>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Image</th>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Product Name</th>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Price</th>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Quantity</th>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Amount</th>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Status</th>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Date</th>
+                                    </tr>
+                                    {% for rs in orderitems %}
+                                    <tr>
+                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb">
+                                            <a href="/product/{{ rs.product_id }}/{{ rs.product.slug }}">
+                                                <img src="{{ rs.product.image.url }}" width="110" height="80">
+                                            </a>
+                                        </td>
+                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb">{{ rs.product.title }}</td>
+                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb">{{ rs.price }}</td>
+                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb">{{ rs.quantity }}</td>
+                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb">{{ rs.amount }}</td>
+                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb">{{ rs.status }}</td>
+                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb">{{ rs.create_at }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End references -->
+
+{% endblock %}

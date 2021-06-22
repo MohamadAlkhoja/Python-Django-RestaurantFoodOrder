@@ -71,10 +71,10 @@ class OrderProduct(models.Model):
     quantity = models.IntegerField()
     price = models.FloatField()
     amount = models.FloatField()
-    total = models.CharField(max_length=15, blank=True)
+    #total = models.CharField(max_length=15, blank=True)
     status = models.CharField(max_length=15, default='New', choices=STATUS)
-    ip = models.CharField(max_length=20, blank=True)
-    adminnote = models.CharField(max_length=100, blank=True)
+    #ip = models.CharField(max_length=20, blank=True)
+    #adminnote = models.CharField(max_length=100, blank=True)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 

@@ -1,0 +1,63 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block title %} Order Comments {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+{% block content %}
+
+    <br><br><br>
+	<!-- Start references -->
+	<div class="about-section-box">
+		<div class="container">
+			<div class="row">
+                <div class="col-xl-2 col-lg-2 col-md-6 col-sm-8 col-12 blog-sidebar">
+					{% include "user_panel.html" %}
+				</div>
+                <div class="col-xl-10 col-lg-10 col-12">
+                    <h2 style="font-weight: bold">&nbsp;&nbsp;&nbsp; User Comments</h2>
+                    <hr>
+					<div class="blog-inner-details-page">
+						<div class="blog-inner-box">
+
+							<div class="inner-blog-detail details-page">
+
+								<table style="width: 90%">
+                                    <tr>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-center">Product</th>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-center">Rate</th>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-center">Subject</th>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-center">Comment</th>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-center">Status</th>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-center">Date</th>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-center">Details</th>
+                                    </tr>
+                                    {% for rs in comments %}
+                                        <tr>
+                                            <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb text-center">
+                                                <a href="/product/{{ rs.product_id }}/{{ rs.product.slug }}">
+                                                    <b>{{ rs.product.title }}</b>
+                                                </a>
+                                            </td>
+                                            <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb text-center">{{ rs.rate }}</td>
+                                            <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb text-center">{{ rs.subject }}</td>
+                                            <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb text-center">{{ rs.comment }}</td>
+                                            <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb text-center">{{ rs.status }}</td>
+                                            <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb text-center">{{ rs.create_at }}</td>
+                                            <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb text-center"><a class="btn btn-outline-dark" href="/user/deletecomment/{{ rs.id }}" onclick="return confirm('Do you ant to Delete this order !!')"> Delete</a></td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End references -->
+
+{% endblock %}

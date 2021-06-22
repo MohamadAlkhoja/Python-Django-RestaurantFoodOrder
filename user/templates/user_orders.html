@@ -1,0 +1,62 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block title %} Orders List {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+
+
+{% block content %}
+
+    <br><br><br>
+	<!-- Start references -->
+	<div class="about-section-box">
+		<div class="container">
+			<div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-8 col-12 blog-sidebar">
+					{% include "user_panel.html" %}
+				</div>
+                <div class="col-xl-9 col-lg-9 col-12">
+                    <h2 style="font-weight: bold">&nbsp;&nbsp;&nbsp; User Orders</h2>
+                    <hr>
+					<div class="blog-inner-details-page">
+						<div class="blog-inner-box">
+
+							<div class="inner-blog-detail details-page">
+
+								<table style="width: 90%">
+                                    <tr>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Id</th>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Table Number</th>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Total</th>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Status</th>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Date</th>
+                                        <th style="color: black;padding: 8px;border-bottom: 1px solid #ddd;" class="text-left">Details</th>
+                                    </tr>
+                                    {% for rs in orders %}
+                                    <tr>
+                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb">{{ rs.id }}</td>
+                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb">{{ rs.tableno }}</td>
+                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb">{{ rs.total }}</td>
+                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb">{{ rs.status }}</td>
+                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb">{{ rs.create_at }}</td>
+                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;" class="thumb"><a class="btn btn-common" href="/user/orderdetail/{{ rs.id }}"> Detay</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- End references -->
+
+{% endblock %}
