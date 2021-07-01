@@ -26,20 +26,7 @@
 	<div class="contact-box">
 		<div class="container">
 			<div class="row">
-
 				<div class="col-lg-4">
-
-                        {% if messages %}
-                            {% for message in messages %}
-                                <div style="border-left: 6px solid mediumseagreen; background-color: lightgray;font-weight: bold">
-                                    <div class="alert alert-{{message.tag}}" role="alert">
-                                        {{ message }}
-                                    </div>
-                                </div>
-
-                            {% endfor %}
-                        {% endif %}
-
                         <form id="contactFormu" action="" method="post">
 						    {% csrf_token %}
                             {{ form.as_p }}
@@ -69,7 +56,7 @@
 					<div class="overflow-hidden">
 						<h4>Phone</h4>
 						<p class="lead">
-							+01 123-456-4590
+							{{ setting.phone }}
 						</p>
 					</div>
 				</div>
@@ -78,7 +65,7 @@
 					<div class="overflow-hidden">
 						<h4>Email</h4>
 						<p class="lead">
-							yourmail@gmail.com
+							{{ setting.email }}
 						</p>
 					</div>
 				</div>
@@ -87,7 +74,7 @@
 					<div class="overflow-hidden">
 						<h4>Location</h4>
 						<p class="lead">
-							800, Lorem Street, US
+							{{ setting.address }}
 						</p>
 					</div>
 				</div>
