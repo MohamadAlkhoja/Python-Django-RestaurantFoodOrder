@@ -12,7 +12,7 @@ from product.models import Product, Category, Images, Comment
 
 def index(request):
     setting = Setting.objects.get(pk=1)
-    sliderdata = Product.objects.all()[:4]
+    sliderdata = Product.objects.all().order_by('?')[:4]
     category = Category.objects.all()
     mostordered = Product.objects.all()[:3]
     recentlyordered = Product.objects.all().order_by('-id')[:3]

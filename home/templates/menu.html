@@ -46,13 +46,7 @@
                                     {% recursetree category %}
                                         <li>
                                             <div class="
-                                                {% if node.is_root_node %}
-                                                    root
-                                                {% elif node.is_child_node and not node.is_leaf_node or node.is_second_node %}
-                                                    child
-                                                {% elif node.is_leaf_node and not node.is_root_node %}
-                                                    leaf
-                                                {% endif %}">
+                                                ">
                                                 <a href="/category/{{ node.id }}/{{ node.slug }}"
                                                 > {{ node.title }}</a>
                                             </div>
@@ -79,7 +73,7 @@
                     {% for rs in productmenu %}
 				<div class="col-lg-4 col-md-6 special-grid drinks">
 					<div class="gallery-single fix">
-						<img src="{{ rs.image.url }}" class="img-fluid" alt="Image" style="height: 220px">
+						<img src="{{ rs.image.url }}" class="img-fluid" alt="Image" style="height: 210px; width: 300px">
 						<div class="why-text">
                             <h4><a href="/product/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></h4>
 							<a href="/product/{{ rs.id }}/{{ rs.slug }}"><p></p></a>

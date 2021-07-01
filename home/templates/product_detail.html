@@ -117,15 +117,6 @@
                         </ul>
                     <br>
                     <br>
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div style="border-left: 6px solid mediumseagreen; background-color: lightgray; width: 500px; font-weight: bold"
-                                 class="alert alert-warning{{ message.tags }}" role="alert">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
-
-                    {% endif %}
                     </div>
                     <div class="details col-md-6">
                         <h3 class="product-title">{{ product.title }}</h3>
